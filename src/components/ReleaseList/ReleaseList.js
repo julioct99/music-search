@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Release from '../Release/Release';
+import arrayFns from '../../utilities/arrays';
 
 const ReleaseList = ({ releases }) => {
-  const [resultLimit, setResultLimit] = useState(5);
+  const [resultSize, setResultSize] = useState(5);
+
+  const sortedReleases = () => releases.sort((a, b) => b.count - a.count);
 
   return (
     <div>
       <h2>Releases</h2>
-      <span>Max. results: </span>
+      <span>Max. results to show: </span>
       <input
         onChange={(event) => {
-          setResultLimit(event.target.value);
+          setResultSize(event.target.value);
         }}
-        value={resultLimit}
-        type='text'
+        value={resultSize}
+        type='number'
       />
-      {releases.splice(0, resultLimit).map((release) => (
+      {arrayFns.getNElements(sortedReleases(), resultSize).map((release) => (
         <Release release={release} key={release.id} />
       ))}
     </div>

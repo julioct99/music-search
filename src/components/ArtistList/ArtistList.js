@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Artist from '../Artist/Artist';
+import arrayFns from '../../utilities/arrays';
 
 const ArtistList = ({ artists }) => {
-  const [resultLimit, setResultLimit] = useState(5);
+  const [resultSize, setResultSize] = useState(5);
 
   return (
     <div>
       <h2>Artists</h2>
-      <span>Max. results: </span>
+      <span>Max. results to show: </span>
       <input
         onChange={(event) => {
-          setResultLimit(event.target.value);
+          setResultSize(event.target.value);
         }}
-        value={resultLimit}
-        type='text'
+        value={resultSize}
+        type='number'
       />
-      {artists.splice(0, resultLimit).map((artist) => (
+      {arrayFns.getNElements(artists, resultSize).map((artist) => (
         <Artist artist={artist} key={artist.id} />
       ))}
     </div>
