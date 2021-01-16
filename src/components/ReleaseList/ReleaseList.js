@@ -4,7 +4,7 @@ import Release from '../Release/Release';
 import arrayFns from '../../utilities/arrays';
 
 const ReleaseList = ({ releases }) => {
-  const [resultSize, setResultSize] = useState(5);
+  const [resultSize, setResultSize] = useState(15);
 
   const sortedReleases = () => releases.sort((a, b) => b.count - a.count);
 
