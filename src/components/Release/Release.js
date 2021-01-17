@@ -17,7 +17,7 @@ const Release = ({ release }) => {
           index === imgIndex ? null : (
             <img
               style={{ margin: '1px' }}
-              height='50px'
+              height='75px'
               src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
               alt=''
             />
