@@ -3,39 +3,32 @@ import './App.scss';
 
 import ArtistList from './components/ArtistList/ArtistList';
 import ReleaseList from './components/ReleaseList/ReleaseList';
+import GeneralSearch from './components/GeneralSearch/GeneralSearch';
+import CompositeSearch from './components/CompositeSearch/CompositeSearch';
+import { fetchArtists, fetchReleases } from './api/musicbrainz';
 
 function App() {
   const [artists, setArtists] = useState([]);
   const [releases, setReleases] = useState([]);
-  const [search, setSearch] = useState('');
-  const [artistSearch, setArtistSearch] = useState('');
-  const [releaseSearch, setReleaseSearch] = useState('');
 
   function getArtists(artistName) {
-    fetch(
-      `https://musicbrainz.org/ws/2/artist/?query=artist:${artistName}&fmt=json`
-    )
-      .then((res) => res.json())
-      .then((data) => setArtists(data.artists));
+    fetchArtists(artistName).then((data) => setArtists(data));
   }
 
   function getReleases(releaseName) {
-    console.log(releaseName);
-    fetch(
-      `https://musicbrainz.org/ws/2/release-group/?query=release:${releaseName}&fmt=json`
-    )
-      .then((res) => res.json())
-      .then((data) => setReleases(data['release-groups']));
+    fetchReleases(releaseName).then((data) => setReleases(data));
   }
 
-  function generalSearch() {
-    getReleases(search);
-    getArtists(search);
-  }
-
-  function compositeSearch(event) {
+  function generalSearch(event, searchTerm) {
     event.preventDefault();
-    const compositeSearchTerm = `${releaseSearch} by ${artistSearch}`.trim();
+    getReleases(searchTerm);
+    getArtists(searchTerm);
+  }
+
+  function compositeSearch(event, artist, release) {
+    event.preventDefault();
+    let compositeSearchTerm = `${release} by ${artist}`.trim();
+    if (compositeSearchTerm.endsWith('by')) compositeSearchTerm = release;
     if (compositeSearchTerm !== 'by') {
       getReleases(compositeSearchTerm);
       getArtists(compositeSearchTerm);
@@ -45,29 +38,9 @@ function App() {
   return (
     <div className='App'>
       <h1>Testing MusicBrainz API</h1>
-      <input
-        placeholder='General search'
-        onChange={(e) => setSearch(e.target.value)}
-        type='search'
-      />
-      <button type='button' onClick={generalSearch}>
-        Search
-      </button>
+      <GeneralSearch onSearch={generalSearch} />
       <br />
-      <form onSubmit={(event) => compositeSearch(event)}>
-        <input
-          onChange={(e) => setReleaseSearch(e.target.value)}
-          placeholder='Album, single, EP...'
-          type='search'
-        />
-        <span> by </span>
-        <input
-          onChange={(e) => setArtistSearch(e.target.value)}
-          placeholder='Artist'
-          type='search'
-        />
-        <button type='submit'>Search</button>
-      </form>
+      <CompositeSearch onSearch={compositeSearch} />
       <ArtistList artists={artists} />
       <hr />
       <ReleaseList releases={releases} />

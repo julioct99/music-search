@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import arrayFns from '../../utilities/arrays';
+import { getNElements } from '../../utilities/arrays';
 
 const Release = ({ release }) => {
   const [imgIndex, setImgIndex] = useState(0);
@@ -11,18 +11,16 @@ const Release = ({ release }) => {
   const toggleShowAltCovers = () => setShowAltCovers(!showAltCovers);
   const getAltCovers = () => {
     if (showAltCovers) {
-      return arrayFns
-        .getNElements(release.releases, 30)
-        .map((releaseGroup, index) =>
-          index === imgIndex ? null : (
-            <img
-              style={{ margin: '1px' }}
-              height='75px'
-              src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
-              alt=''
-            />
-          )
-        );
+      return getNElements(release.releases, 30).map((releaseGroup, index) =>
+        index === imgIndex ? null : (
+          <img
+            style={{ margin: '1px' }}
+            height='75px'
+            src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
+            alt=''
+          />
+        )
+      );
     }
     return null;
   };
@@ -58,12 +56,8 @@ const Release = ({ release }) => {
   );
 };
 
-Release.defaultProps = {
-  release: {},
-};
-
 Release.propTypes = {
-  release: PropTypes.objectOf(PropTypes.object),
+  release: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Release;

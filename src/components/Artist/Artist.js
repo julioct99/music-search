@@ -24,12 +24,8 @@ const Artist = ({ artist }) => {
   );
 };
 
-Artist.defaultProps = {
-  artist: {},
-};
-
 Artist.propTypes = {
-  artist: PropTypes.objectOf(PropTypes.object),
+  artist: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Artist;

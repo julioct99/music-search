@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Artist from '../Artist/Artist';
-import arrayFns from '../../utilities/arrays';
+import { getNElements } from '../../utilities/arrays';
 
 const ArtistList = ({ artists }) => {
   const [resultSize, setResultSize] = useState(5);
@@ -17,19 +17,15 @@ const ArtistList = ({ artists }) => {
         value={resultSize}
         type='number'
       />
-      {arrayFns.getNElements(artists, resultSize).map((artist) => (
+      {getNElements(artists, resultSize).map((artist) => (
         <Artist artist={artist} key={artist.id} />
       ))}
     </div>
   );
 };
 
-ArtistList.defaultProps = {
-  artists: [],
-};
-
 ArtistList.propTypes = {
-  artists: PropTypes.arrayOf(PropTypes.object),
+  artists: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ArtistList;

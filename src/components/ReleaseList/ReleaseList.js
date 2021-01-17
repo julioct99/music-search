@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Release from '../Release/Release';
-import arrayFns from '../../utilities/arrays';
+import { getNElements } from '../../utilities/arrays';
 
 const ReleaseList = ({ releases }) => {
   const [resultSize, setResultSize] = useState(15);
@@ -19,19 +19,15 @@ const ReleaseList = ({ releases }) => {
         value={resultSize}
         type='number'
       />
-      {arrayFns.getNElements(sortedReleases(), resultSize).map((release) => (
+      {getNElements(sortedReleases(), resultSize).map((release) => (
         <Release release={release} key={release.id} />
       ))}
     </div>
   );
 };
 
-ReleaseList.defaultProps = {
-  releases: [],
-};
-
 ReleaseList.propTypes = {
-  releases: PropTypes.arrayOf(PropTypes.object),
+  releases: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ReleaseList;
