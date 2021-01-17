@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './App.scss';
 
 import ArtistList from './components/ArtistList/ArtistList';
 import ReleaseList from './components/ReleaseList/ReleaseList';
@@ -29,7 +29,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Testing MusicBrainz API</h1>
-      <input onChange={(e) => setSearch(e.target.value)} type='text' />
+      <input onChange={(e) => setSearch(e.target.value)} type='search' />
       <button
         type='button'
         onClick={() => {

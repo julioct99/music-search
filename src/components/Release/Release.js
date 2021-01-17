@@ -4,9 +4,28 @@ import arrayFns from '../../utilities/arrays';
 
 const Release = ({ release }) => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [showAltCovers, setShowAltCovers] = useState(false);
 
   const sortedTags = () => release.tags?.sort((a, b) => b.count - a.count);
   const getReleaseId = () => release.releases[imgIndex]?.id;
+  const toggleShowAltCovers = () => setShowAltCovers(!showAltCovers);
+  const getAltCovers = () => {
+    if (showAltCovers) {
+      return arrayFns
+        .getNElements(release.releases, 30)
+        .map((releaseGroup, index) =>
+          index === imgIndex ? null : (
+            <img
+              style={{ margin: '1px' }}
+              height='50px'
+              src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
+              alt=''
+            />
+          )
+        );
+    }
+    return null;
+  };
 
   return (
     <div
@@ -30,15 +49,11 @@ const Release = ({ release }) => {
         ))}
       </div>
       {/* <p>{JSON.stringify(release.releases, null, 4)}</p> */}
+      <button onClick={toggleShowAltCovers} type='button'>
+        {showAltCovers ? 'Hide alternative covers' : 'Show alternative covers'}
+      </button>
       <br />
-      {arrayFns.getNElements(release.releases, 10).map((releaseGroup) => (
-        <img
-          style={{ margin: '1px' }}
-          height='50px'
-          src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
-          alt=''
-        />
-      ))}
+      {getAltCovers()}
     </div>
   );
 };
