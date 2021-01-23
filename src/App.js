@@ -15,6 +15,13 @@ function App() {
   const [artistsLoading, setArtistsLoading] = useState(false);
   const [releasesLoading, setReleasesLoading] = useState(false);
 
+  function reset() {
+    setArtists([]);
+    setReleases([]);
+    setArtistsLoading(true);
+    setReleasesLoading(true);
+  }
+
   function getArtists(artistName) {
     fetchArtists(artistName).then((data) => {
       setArtists(data);
@@ -30,8 +37,7 @@ function App() {
   }
 
   function generalSearch(event, searchTerm) {
-    setArtistsLoading(true);
-    setReleasesLoading(true);
+    reset();
     event.preventDefault();
     getReleases(searchTerm);
     getArtists(searchTerm);
@@ -42,8 +48,7 @@ function App() {
     let compositeSearchTerm = `${release} by ${artist}`.trim();
     if (compositeSearchTerm.endsWith('by')) compositeSearchTerm = release;
     if (compositeSearchTerm !== 'by') {
-      setArtistsLoading(true);
-      setReleasesLoading(true);
+      reset();
       getReleases(compositeSearchTerm);
       getArtists(compositeSearchTerm);
     }

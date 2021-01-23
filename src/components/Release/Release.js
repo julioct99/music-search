@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getNElements } from '../../utilities/arrays';
+import Spinner from '../Spinner/Spinner';
 
 const Release = ({ release }) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [showAltCovers, setShowAltCovers] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const sortedTags = () => release.tags?.sort((a, b) => b.count - a.count);
+
   const getReleaseId = () => release.releases[imgIndex]?.id;
+
   const toggleShowAltCovers = () => setShowAltCovers(!showAltCovers);
+
   const getReleaseYear = () => {
     const year = release['first-release-date']?.split('').splice(0, 4).join('');
     return year ? `(${year})` : '';
   };
+
+  const tryNextCover = () => {
+    setImgIndex(imgIndex + 1);
+    // If there are no more releases to try, image is treated as loaded to stop the spinner
+    if (imgIndex === release.releases.length) setImgLoaded(true);
+  };
+
   const getAltCovers = () => {
     if (showAltCovers) {
       return getNElements(release.releases, 30).map((releaseGroup, index) =>
@@ -47,10 +59,13 @@ const Release = ({ release }) => {
       </h3>
       <br />
       <br />
+      {imgLoaded ? null : <Spinner type='drops' />}
       <img
         width='250px'
-        onError={() => setImgIndex(imgIndex + 1)}
+        onError={tryNextCover}
+        onLoad={() => setImgLoaded(true)}
         src={`https://coverartarchive.org/release/${getReleaseId()}/front-250`}
+        style={imgLoaded ? {} : { display: 'none' }}
         alt=''
       />
       <div>
