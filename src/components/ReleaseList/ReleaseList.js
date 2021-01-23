@@ -15,13 +15,6 @@ const ReleaseList = ({ releases }) => {
     <div>
       <h2>Releases</h2>
       <span>Max. results to show: </span>
-      {/* <input
-        onChange={(event) => {
-          setResultSize(event.target.value);
-        }}
-        value={resultSize}
-        type='number'
-      /> */}
       <Input
         changed={onMaxResultsInputChange}
         type='number'
