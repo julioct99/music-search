@@ -1,11 +1,12 @@
 @import '../../shared/scss/variables';
 
 .Input {
-  background-color: $color-lightblue;
-  border: 1px solid rgba($color-dark-gray, 0.9);
-  border-radius: 0.5rem;
+  background-color: darken($color-whitesmoke, 5%);
+  border: none;
+  border-radius: 5px;
   transition: all 0.2s;
   font-family: inherit;
+  box-shadow: $box-shadow-xs;
 
   &::-webkit-search-cancel-button {
     cursor: pointer;
@@ -23,7 +24,8 @@
     font-size: 0.8rem;
     padding: 0.2rem;
     margin: 0.2rem;
-    border-radius: 0.25rem;
+    border-radius: 3px;
+    box-shadow: none;
   }
 
   &.m {
@@ -36,5 +38,9 @@
     font-size: 1.5rem;
     padding: 0.75rem;
     margin: 0.75rem;
+  }
+
+  &.text-center {
+    text-align: center;
   }
 }

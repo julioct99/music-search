@@ -3,6 +3,7 @@ $color-whitesmoke: #ece9e6;
 $color-lightblue: lightblue;
 $color-dark-gray: #252525;
 $color-black: #000;
+$color-black-transparent: rgba($color-black, 0.5);
 
 $gradient-cloud: linear-gradient(to right, $color-white, $color-whitesmoke);
 $gradient-cloud-w: -webkit-linear-gradient(
@@ -11,5 +12,7 @@ $gradient-cloud-w: -webkit-linear-gradient(
   $color-whitesmoke
 );
 
-$box-shadow: 4px 6px 6px rgba($color-black, 0.5);
-$box-shadow-sm: 2px 3px 3px rgba($color-black, 0.5);
+$box-shadow-l: 4px 8px 8px $color-black-transparent;
+$box-shadow: 4px 6px 6px $color-black-transparent;
+$box-shadow-s: 2px 3px 3px $color-black-transparent;
+$box-shadow-xs: 1px 2px 2px $color-black-transparent;

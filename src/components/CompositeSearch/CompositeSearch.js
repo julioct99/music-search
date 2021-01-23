@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
+import styles from './CompositeSearch.module.scss';
+
 const CompositeSearch = ({ onSearch }) => {
   const [artistSearch, setArtistSearch] = useState('');
   const [releaseSearch, setReleaseSearch] = useState('');
@@ -12,12 +14,16 @@ const CompositeSearch = ({ onSearch }) => {
   const onArtistInputChange = (event) => setArtistSearch(event.target.value);
 
   return (
-    <form onSubmit={(event) => onSearch(event, artistSearch, releaseSearch)}>
+    <form
+      className={styles.CompositeSearch}
+      onSubmit={(event) => onSearch(event, artistSearch, releaseSearch)}
+    >
       <Input
         changed={onReleaseInputChange}
         placeholder='Album, single, EP...'
         type='search'
         size='m'
+        textCenter
       />
       <span> by </span>
       <Input
@@ -25,6 +31,7 @@ const CompositeSearch = ({ onSearch }) => {
         placeholder='Artist'
         type='search'
         size='m'
+        textCenter
       />
       <Button submit size='m'>
         Search

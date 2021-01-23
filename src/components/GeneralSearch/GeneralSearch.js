@@ -16,6 +16,7 @@ const GeneralSearch = ({ onSearch }) => {
         placeholder='Artist / Release'
         type='search'
         size='l'
+        textCenter
       />
       <Button submit>Search</Button>
     </form>

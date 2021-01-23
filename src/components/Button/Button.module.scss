@@ -8,21 +8,22 @@
   border: none;
   outline: none;
   transition: all 0.2s;
-  border-radius: 0.3rem;
+  border-radius: 5px;
   display: inline-block;
   text-transform: uppercase;
   text-decoration: none;
+  box-shadow: $box-shadow-xs;
 
   &:hover {
     background-color: lighten($color-dark-gray, 10%);
-    transform: scale(1.02);
+    transform: scale(1.015);
     box-shadow: $box-shadow;
   }
 
   &.s {
     font-size: 1rem;
-    padding: 0.2rem 1.5rem;
-    margin: 0.2rem;
+    padding: 0.3rem 1.5rem;
+    margin: 0.4rem;
 
     &:hover {
       transform: none;

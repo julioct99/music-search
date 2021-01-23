@@ -5,6 +5,7 @@ import { getNElements } from '../../shared/utilities/arrays';
 
 import Spinner from '../Spinner/Spinner';
 import Button from '../Button/Button';
+import Card from '../Card/Card';
 
 const Release = ({ release }) => {
   const [imgIndex, setImgIndex] = useState(0);
@@ -45,14 +46,16 @@ const Release = ({ release }) => {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: 'lightblue',
-        padding: '15px',
-        margin: '15px auto',
-        maxWidth: '800px',
-      }}
-    >
+    <Card>
+      {imgLoaded ? null : <Spinner type='drops' />}
+      <img
+        width='300px'
+        onError={tryNextCover}
+        onLoad={() => setImgLoaded(true)}
+        src={`https://coverartarchive.org/release/${getReleaseId()}/front-250`}
+        style={imgLoaded ? {} : { display: 'none' }}
+        alt=''
+      />
       <h3 style={{ display: 'inline' }}>
         {`${release.title} ${getReleaseYear()}`}
       </h3>
@@ -62,15 +65,7 @@ const Release = ({ release }) => {
       </h3>
       <br />
       <br />
-      {imgLoaded ? null : <Spinner type='drops' />}
-      <img
-        width='250px'
-        onError={tryNextCover}
-        onLoad={() => setImgLoaded(true)}
-        src={`https://coverartarchive.org/release/${getReleaseId()}/front-250`}
-        style={imgLoaded ? {} : { display: 'none' }}
-        alt=''
-      />
+
       <div>
         {sortedTags()?.map((tag) => (
           <span>{`${tag.name}, `}</span>
@@ -81,7 +76,7 @@ const Release = ({ release }) => {
       </Button>
       <br />
       {getAltCovers()}
-    </div>
+    </Card>
   );
 };
 

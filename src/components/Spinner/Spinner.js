@@ -12,7 +12,9 @@ const spinnerTypes = {
 };
 
 const Spinner = ({ type }) => {
-  const className = `Spinner-${spinnerTypes[type.toUpperCase()]}`;
+  const spinnerTypeClass =
+    styles[`Spinner-${spinnerTypes[type.toUpperCase()]}`];
+  const className = [spinnerTypeClass, styles.Spinner].join(' ');
   let extraDivsAmount = 0;
 
   switch (type) {
@@ -27,9 +29,7 @@ const Spinner = ({ type }) => {
   }
 
   return (
-    <div className={styles[className]}>
-      {repeatElement(<div />, extraDivsAmount)}
-    </div>
+    <div className={className}>{repeatElement(<div />, extraDivsAmount)}</div>
   );
 };
 

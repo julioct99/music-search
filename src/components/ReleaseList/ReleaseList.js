@@ -5,6 +5,8 @@ import { getNElements } from '../../shared/utilities/arrays';
 import Release from '../Release/Release';
 import Input from '../Input/Input';
 
+import styles from './ReleaseList.module.scss';
+
 const ReleaseList = ({ releases }) => {
   const [resultSize, setResultSize] = useState(15);
 
@@ -12,7 +14,7 @@ const ReleaseList = ({ releases }) => {
   const onMaxResultsInputChange = (event) => setResultSize(event.target.value);
 
   return (
-    <div>
+    <div className={styles.ReleaseList}>
       <h2>Releases</h2>
       <span>Max. results to show: </span>
       <Input
@@ -20,6 +22,7 @@ const ReleaseList = ({ releases }) => {
         type='number'
         size='s'
         placeholder={resultSize}
+        textCenter
       />
       {getNElements(sortedReleases(), resultSize).map((release) => (
         <Release release={release} key={release.id} />
