@@ -9,41 +9,41 @@ import GeneralSearch from './components/GeneralSearch/GeneralSearch';
 import CompositeSearch from './components/CompositeSearch/CompositeSearch';
 import Spinner from './components/Spinner/Spinner';
 
-function App() {
+const App = () => {
   const [artists, setArtists] = useState([]);
   const [releases, setReleases] = useState([]);
   const [artistsLoading, setArtistsLoading] = useState(false);
   const [releasesLoading, setReleasesLoading] = useState(false);
 
-  function reset() {
+  const reset = () => {
     setArtists([]);
     setReleases([]);
     setArtistsLoading(true);
     setReleasesLoading(true);
-  }
+  };
 
-  function getArtists(artistName) {
+  const getArtists = (artistName) => {
     fetchArtists(artistName).then((data) => {
       setArtists(data);
       setArtistsLoading(false);
     });
-  }
+  };
 
-  function getReleases(releaseName) {
+  const getReleases = (releaseName) => {
     fetchReleases(releaseName).then((data) => {
       setReleases(data);
       setReleasesLoading(false);
     });
-  }
+  };
 
-  function generalSearch(event, searchTerm) {
+  const generalSearch = (event, searchTerm) => {
     reset();
     event.preventDefault();
     getReleases(searchTerm);
     getArtists(searchTerm);
-  }
+  };
 
-  function compositeSearch(event, artist, release) {
+  const compositeSearch = (event, artist, release) => {
     event.preventDefault();
     let compositeSearchTerm = `${release} by ${artist}`.trim();
     if (compositeSearchTerm.endsWith('by')) compositeSearchTerm = release;
@@ -52,7 +52,7 @@ function App() {
       getReleases(compositeSearchTerm);
       getArtists(compositeSearchTerm);
     }
-  }
+  };
 
   return (
     <div className='App'>
@@ -66,6 +66,6 @@ function App() {
       <ReleaseList releases={releases} />
     </div>
   );
-}
+};
 
 export default App;

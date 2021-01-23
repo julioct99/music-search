@@ -21,7 +21,7 @@ const Release = ({ release }) => {
 
   const tryNextCover = () => {
     setImgIndex(imgIndex + 1);
-    // If there are no more releases to try, image is treated as loaded to stop the spinner
+    // If there are no more releases to try, image is set as loaded to stop the spinner
     if (imgIndex === release.releases.length) setImgLoaded(true);
   };
 

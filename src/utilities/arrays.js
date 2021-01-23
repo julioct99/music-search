@@ -1,9 +1,3 @@
-export function getNElements(array, n) {
-  return array.filter((el, idx) => idx < n);
-}
+export const getNElements = (array, n) => array.filter((el, idx) => idx < n);
 
-export function empty() {
-  return '';
-}
-
-// export default { getNElements };
+export default { getNElements };
