@@ -9,6 +9,10 @@ const Release = ({ release }) => {
   const sortedTags = () => release.tags?.sort((a, b) => b.count - a.count);
   const getReleaseId = () => release.releases[imgIndex]?.id;
   const toggleShowAltCovers = () => setShowAltCovers(!showAltCovers);
+  const getReleaseYear = () => {
+    const year = release['first-release-date']?.split('').splice(0, 4).join('');
+    return year ? `(${year})` : '';
+  };
   const getAltCovers = () => {
     if (showAltCovers) {
       return getNElements(release.releases, 30).map((releaseGroup, index) =>
@@ -16,7 +20,7 @@ const Release = ({ release }) => {
           <img
             style={{ margin: '1px' }}
             height='75px'
-            src={`https://coverartarchive.org/release/${releaseGroup.id}/front`}
+            src={`https://coverartarchive.org/release/${releaseGroup.id}/front-250`}
             alt=''
           />
         )
@@ -34,11 +38,19 @@ const Release = ({ release }) => {
         maxWidth: '800px',
       }}
     >
-      <h3>{`${release.title} - ${release['artist-credit'][0].name}`}</h3>
+      <h3 style={{ display: 'inline' }}>
+        {`${release.title} ${getReleaseYear()}`}
+      </h3>
+      <span> by </span>
+      <h3 style={{ display: 'inline' }}>
+        {`${release['artist-credit'][0].name}`}
+      </h3>
+      <br />
+      <br />
       <img
         width='250px'
         onError={() => setImgIndex(imgIndex + 1)}
-        src={`https://coverartarchive.org/release/${getReleaseId()}/front`}
+        src={`https://coverartarchive.org/release/${getReleaseId()}/front-250`}
         alt=''
       />
       <div>

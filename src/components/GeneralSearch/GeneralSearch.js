@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Input from '../Input/Input';
+
 const GeneralSearch = ({ onSearch }) => {
   const [search, setSearch] = useState('');
 
+  const onInputChange = (event) => setSearch(event.target.value);
+
   return (
     <form onSubmit={(event) => onSearch(event, search)}>
-      <input
-        placeholder='General search'
-        onChange={(e) => setSearch(e.target.value)}
+      <Input
+        changed={onInputChange}
+        placeholder='Artist / Release'
         type='search'
+        size='l'
       />
       <button type='submit'>Search</button>
     </form>

@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Artist from '../Artist/Artist';
 import { getNElements } from '../../utilities/arrays';
+
+import Artist from '../Artist/Artist';
+import Input from '../Input/Input';
 
 const ArtistList = ({ artists }) => {
   const [resultSize, setResultSize] = useState(5);
+
+  const onMaxResultsInputChange = (event) => setResultSize(event.target.value);
 
   return (
     <div>
       <h2>Artists</h2>
       <span>Max. results to show: </span>
-      <input
-        onChange={(event) => {
-          setResultSize(event.target.value);
-        }}
-        value={resultSize}
+      <Input
+        changed={onMaxResultsInputChange}
         type='number'
+        size='s'
+        value={resultSize}
       />
       {getNElements(artists, resultSize).map((artist) => (
         <Artist artist={artist} key={artist.id} />
