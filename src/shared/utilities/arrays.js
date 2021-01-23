@@ -1,3 +1,3 @@
 export const getNElements = (array, n) => array.filter((el, idx) => idx < n);
 
-export default { getNElements };
+export const repeatElement = (element, n) => Array(n).fill(element);

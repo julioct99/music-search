@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { repeatElement } from '../../shared/utilities/arrays';
+
 import styles from './Spinner.module.scss';
 
 const spinnerTypes = {
@@ -10,8 +12,7 @@ const spinnerTypes = {
 };
 
 const Spinner = ({ type }) => {
-  const classes = `Spinner-${spinnerTypes[type.toUpperCase()]}`;
-  const extraDivs = [];
+  const className = `Spinner-${spinnerTypes[type.toUpperCase()]}`;
   let extraDivsAmount = 0;
 
   switch (type) {
@@ -25,11 +26,11 @@ const Spinner = ({ type }) => {
       extraDivsAmount = 0;
   }
 
-  for (let i = 0; i <= extraDivsAmount; i += 1) {
-    extraDivs.push(<div />);
-  }
-
-  return <div className={styles[classes]}>{extraDivs}</div>;
+  return (
+    <div className={styles[className]}>
+      {repeatElement(<div />, extraDivsAmount)}
+    </div>
+  );
 };
 
 Spinner.defaultProps = { type: spinnerTypes.DROPS };

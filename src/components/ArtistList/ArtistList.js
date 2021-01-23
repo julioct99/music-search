@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getNElements } from '../../utilities/arrays';
+import { getNElements } from '../../shared/utilities/arrays';
 
 import Artist from '../Artist/Artist';
 import Input from '../Input/Input';
