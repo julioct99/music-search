@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.scss';
 
+import { fetchArtists, fetchReleases } from './api/musicbrainz';
+
 import ArtistList from './components/ArtistList/ArtistList';
 import ReleaseList from './components/ReleaseList/ReleaseList';
 import GeneralSearch from './components/GeneralSearch/GeneralSearch';
 import CompositeSearch from './components/CompositeSearch/CompositeSearch';
-import { fetchArtists, fetchReleases } from './api/musicbrainz';
 
 function App() {
   const [artists, setArtists] = useState([]);

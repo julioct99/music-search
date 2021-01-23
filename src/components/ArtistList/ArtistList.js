@@ -18,7 +18,7 @@ const ArtistList = ({ artists }) => {
         changed={onMaxResultsInputChange}
         type='number'
         size='s'
-        value={resultSize}
+        placeholder={resultSize}
       />
       {getNElements(artists, resultSize).map((artist) => (
         <Artist artist={artist} key={artist.id} />

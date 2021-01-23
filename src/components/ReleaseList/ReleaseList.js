@@ -19,7 +19,7 @@ const ReleaseList = ({ releases }) => {
         changed={onMaxResultsInputChange}
         type='number'
         size='s'
-        value={resultSize}
+        placeholder={resultSize}
       />
       {getNElements(sortedReleases(), resultSize).map((release) => (
         <Release release={release} key={release.id} />
