@@ -59,11 +59,11 @@ const App = () => {
       <h1>Testing MusicBrainz API</h1>
       <GeneralSearch onSearch={generalSearch} />
       <CompositeSearch onSearch={compositeSearch} />
-      {artistsLoading ? <Spinner type='rollerdots' /> : null}
       <ArtistList artists={artists} />
+      {artistsLoading ? <Spinner type='rollerdots' /> : null}
       <hr />
-      {releasesLoading ? <Spinner type='rollerdots' /> : null}
       <ReleaseList releases={releases} />
+      {releasesLoading ? <Spinner type='rollerdots' /> : null}
     </div>
   );
 };

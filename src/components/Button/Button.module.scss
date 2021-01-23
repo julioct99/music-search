@@ -1,0 +1,43 @@
+@import '../../shared/scss/variables';
+
+.Button {
+  background-color: $color-dark-gray;
+  color: $color-whitesmoke;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s;
+  border-radius: 0.3rem;
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    background-color: lighten($color-dark-gray, 10%);
+    transform: scale(1.02);
+    box-shadow: $box-shadow;
+  }
+
+  &.s {
+    font-size: 1rem;
+    padding: 0.2rem 1.5rem;
+    margin: 0.2rem;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &.m {
+    font-size: 1.25rem;
+    padding: 0.4rem 1.75rem;
+    margin: 0.4rem;
+  }
+
+  &.l {
+    font-size: 1.5rem;
+    padding: 0.6rem 2rem;
+    margin: 0.6rem;
+  }
+}

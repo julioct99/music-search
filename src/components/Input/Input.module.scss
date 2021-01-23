@@ -7,10 +7,15 @@
   transition: all 0.2s;
   font-family: inherit;
 
+  &::-webkit-search-cancel-button {
+    cursor: pointer;
+    font-size: 1.75rem;
+  }
+
   &:focus {
     background-color: rgba($color-dark-gray, 0.9);
     color: $color-whitesmoke;
-    box-shadow: 4px 6px 6px rgba($color-black, 0.5);
+    box-shadow: $box-shadow;
     outline: none;
   }
 

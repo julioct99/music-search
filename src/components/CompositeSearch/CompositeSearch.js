@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 const CompositeSearch = ({ onSearch }) => {
   const [artistSearch, setArtistSearch] = useState('');
@@ -25,7 +26,9 @@ const CompositeSearch = ({ onSearch }) => {
         type='search'
         size='m'
       />
-      <button type='submit'>Search</button>
+      <Button submit size='m'>
+        Search
+      </Button>
     </form>
   );
 };

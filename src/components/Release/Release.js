@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { getNElements } from '../../shared/utilities/arrays';
+
 import Spinner from '../Spinner/Spinner';
+import Button from '../Button/Button';
 
 const Release = ({ release }) => {
   const [imgIndex, setImgIndex] = useState(0);
@@ -73,10 +76,9 @@ const Release = ({ release }) => {
           <span>{`${tag.name}, `}</span>
         ))}
       </div>
-      {/* <p>{JSON.stringify(release.releases, null, 4)}</p> */}
-      <button onClick={toggleShowAltCovers} type='button'>
+      <Button clicked={toggleShowAltCovers} size='s'>
         {showAltCovers ? 'Hide alternative covers' : 'Show alternative covers'}
-      </button>
+      </Button>
       <br />
       {getAltCovers()}
     </div>

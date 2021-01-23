@@ -6,7 +6,10 @@ $color-black: #000;
 
 $gradient-cloud: linear-gradient(to right, $color-white, $color-whitesmoke);
 $gradient-cloud-w: -webkit-linear-gradient(
-    to right,
-    $color-white,
-    $color-whitesmoke
+  to right,
+  $color-white,
+  $color-whitesmoke
 );
+
+$box-shadow: 4px 6px 6px rgba($color-black, 0.5);
+$box-shadow-sm: 2px 3px 3px rgba($color-black, 0.5);

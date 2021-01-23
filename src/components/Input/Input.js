@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import styles from './Input.module.scss';
 
 const Input = ({ changed, placeholder, type, size }) => {
-  const classes = `${styles[size.toLowerCase()]} ${styles.Input}`;
-
   return (
     <input
-      className={classes}
+      className={`${styles[size.toLowerCase()]} ${styles.Input}`}
       onChange={changed}
       placeholder={placeholder}
       type={type}
