@@ -1,12 +1,4 @@
 {
   "singleQuote": true,
-  "jsxSingleQuote": true,
-  "overrides": [
-    {
-      "files": "*.scss",
-      "options": {
-        "tabWidth": 4
-      }
-    }
-  ]
+  "jsxSingleQuote": true
 }
